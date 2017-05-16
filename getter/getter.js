@@ -5,9 +5,13 @@ function get(obj, propPath) {
   
   var path = propPath.split('.');
   var tmp = obj;
-  while(path.length > 0) {
+
+  while((typeof tmp === 'object') && (path.length > 0)) {
     tmp = tmp[path.shift()];
   }
+
+  if (path.length > 0) return undefined;
+
   return tmp;
 }
 
